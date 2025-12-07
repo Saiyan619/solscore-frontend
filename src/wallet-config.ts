@@ -9,7 +9,7 @@ import {
 registerMwa({
     appIdentity: {
     name: 'Klouw',
-    uri: 'https://solscore.vercel.app/',
+    uri: 'https://solscore-v2.vercel.app/',
     icon: '/favicon.ico', // relative path resolves to https://solscore.vercel.app/favicon.ico
   },  
     authorizationCache: createDefaultAuthorizationCache(),
