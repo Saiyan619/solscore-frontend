@@ -80,7 +80,7 @@ export function MarketCard({ publicKey, account }: MarketCardProps) {
             >
               <span className="truncate">{team}</span>
               <Badge variant="outline" className="ml-2">
-                {account.odds[index] ? `${account.odds[index]}%` : "N/A"}
+                {account.odds[index] ? `${account.odds[index]}x` : "N/A"}
               </Badge>
             </div>
           ))}
