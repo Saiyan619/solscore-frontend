@@ -133,7 +133,7 @@ export const useGetAllMarkets = () => {
 
       // Fetch all market accounts
       const markets = await program.account.market.all();
-      console.log("fetched all markets:", markets);
+      // console.log("fetched all markets:", markets);
       return markets.map((market) => ({
         publicKey: market.publicKey.toBase58(),
         account: market.account as any,

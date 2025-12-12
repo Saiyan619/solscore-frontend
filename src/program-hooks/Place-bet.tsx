@@ -91,7 +91,7 @@ export const usePlaceBet = () => {
         "confirmed"
       );
 
-      console.log("Bet placed successfully:", tx);
+      // console.log("Bet placed successfully:", tx);
       return tx;
 
     } catch (error: unknown) {

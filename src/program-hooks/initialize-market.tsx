@@ -83,7 +83,7 @@ await connection.confirmTransaction(
   { signature: tx, ...(await connection.getLatestBlockhash()) },
   "confirmed"
 );
-      console.log("Market created successfully:", tx);
+      // console.log("Market created successfully:", tx);
       return tx;
 
     } catch (error: unknown) {

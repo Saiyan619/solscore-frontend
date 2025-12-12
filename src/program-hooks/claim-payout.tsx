@@ -59,12 +59,12 @@ export const useClaimPayout = () => {
         userAddressPubKey
       );
 
-      console.log("Claiming payout:", {
-        bet: betPDA.toBase58(),
-        market: marketPDA.toBase58(),
-        vault: vault.toBase58(),
-        userTokenAccount: userTokenAccount.toBase58(),
-      });
+      // console.log("Claiming payout:", {
+      //   bet: betPDA.toBase58(),
+      //   market: marketPDA.toBase58(),
+      //   vault: vault.toBase58(),
+      //   userTokenAccount: userTokenAccount.toBase58(),
+      // });
 
       const tx = await program.methods
         .claimPayout()
@@ -86,7 +86,7 @@ export const useClaimPayout = () => {
         "confirmed"
       );
 
-      console.log("Payout claimed successfully:", tx);
+      // console.log("Payout claimed successfully:", tx);
       return tx;
 
     } catch (error: unknown) {

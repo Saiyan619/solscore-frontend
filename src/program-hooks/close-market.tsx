@@ -78,7 +78,7 @@ export const useCloseMarket = () => {
         "confirmed"
       );
 
-      console.log("Market closed successfully:", tx);
+      // console.log("Market closed successfully:", tx);
       return tx;
 
     }catch (error: unknown) {

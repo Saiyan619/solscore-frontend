@@ -35,11 +35,11 @@ export const useResolveMarket = () => {
       const marketPDA = new PublicKey(marketPublicKey);
       const adminPubKey = publicKey;
 
-      console.log("Resolving market:", {
-        marketPDA: marketPDA.toBase58(),
-        admin: adminPubKey.toBase58(),
-        winningTeamIndex,
-      });
+      // console.log("Resolving market:", {
+      //   marketPDA: marketPDA.toBase58(),
+      //   admin: adminPubKey.toBase58(),
+      //   winningTeamIndex,
+      // });
 
       // Call resolve_market instruction
       const tx = await program.methods
@@ -56,7 +56,7 @@ export const useResolveMarket = () => {
         "confirmed"
       );
 
-      console.log("Market resolved successfully:", tx);
+      // console.log("Market resolved successfully:", tx);
       return tx;
 
     } catch (error: unknown) {
