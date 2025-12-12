@@ -17,13 +17,16 @@ const Markets = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedLeague, setSelectedLeague] = useState("all");
 
-  const filteredMarkets = markets.filter((market) => {
+   const activeMarkets = markets.filter((market) => {
+      return market.account.isResolved === false;
+  });
+  const filteredMarkets = activeMarkets.filter((market) => {
     const matchesSearch = market.account.leagueName.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesLeague = selectedLeague === "all" || market.account.leagueName === selectedLeague;
     return matchesSearch && matchesLeague;
   });
 
-  const leagues = ["all", ...Array.from(new Set(markets.map((m) => m.account.leagueName)))];
+  const leagues = ["all", ...Array.from(new Set(activeMarkets.map((m) => m.account.leagueName)))];
 
   return (
     <DashboardLayout>

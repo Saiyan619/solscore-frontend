@@ -108,7 +108,7 @@ export default function Admin() {
       allowedBettors: parseFloat(allowedBettors),
     });
 
-    // ✅ NOW reset the form AFTER successful creation
+    // NOW reset the form AFTER successful creation
     setLeagueName("");
     setSeason("");
     setmaxStakeAmount("");

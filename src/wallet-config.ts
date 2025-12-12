@@ -8,7 +8,7 @@ import {
 
 registerMwa({
     appIdentity: {
-    name: 'Klouw',
+    name: 'SolScore',
     uri: 'https://solscore-v2.vercel.app/',
     icon: '/favicon.ico', // relative path resolves to https://solscore.vercel.app/favicon.ico
   },  
@@ -16,5 +16,5 @@ registerMwa({
     chains: ['solana:devnet'],
     chainSelector: createDefaultChainSelector(),
     onWalletNotFound: createDefaultWalletNotFoundHandler(),
-    remoteHostAuthority: 'solscore.vercel.app',
+    remoteHostAuthority: 'solscore-v2.vercel.app',
 })
