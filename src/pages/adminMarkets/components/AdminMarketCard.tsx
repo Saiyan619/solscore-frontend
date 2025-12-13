@@ -66,7 +66,7 @@ export function AdminMarketCard({ publicKey, account }: MarketCardProps) {
           <div className="flex items-center gap-2">
             <TrendingUp className="h-4 w-4 text-primary" />
             <span className="text-muted-foreground">Max Stake:</span>
-            <span className="font-semibold">{maxStakeAmount.toString()} USDC</span>
+            <span className="font-semibold">{(maxStakeAmount / 1_000_000).toFixed(2)}USDC</span>
           </div>
           <div className="flex items-center gap-2">
             <Users className="h-4 w-4 text-primary" />

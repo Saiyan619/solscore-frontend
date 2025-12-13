@@ -7,7 +7,7 @@ import { PublicKey, SystemProgram } from "@solana/web3.js";
 // import { Solscore } from "@/idlTypes/idlType";
 import { toast } from "sonner";
 
-const mintAddress = "HRTMA5HJ2e27y9t5kttAha2vAKnEYjZ88Gvt8FryP6G6";
+const mintAddress = "Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr";
 
 interface CloseMarketParams {
   marketPublicKey: string;

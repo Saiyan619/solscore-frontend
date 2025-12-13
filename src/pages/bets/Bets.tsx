@@ -1,5 +1,4 @@
 import { DashboardLayout } from "@/components/DashboardLayout";
-// import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useGetAllMarkets } from "@/program-hooks/get-market";
 import { Loader2 } from "lucide-react";
 import { useMemo } from "react";
@@ -18,46 +17,55 @@ const Bets = () => {
     });
     return map;
   }, [markets]);
+
   // Process bets with market data
   const processedBets = useMemo(() => {
-    return bets.map((bet) => {
-      const marketPubKey = bet.account.market.toString();
-      const market = marketMap.get(marketPubKey);
+    return bets
+      .map((bet) => {
+        const marketPubKey = bet.account.market.toString();
+        const market = marketMap.get(marketPubKey);
+        
+        // Skip bets with deleted markets
+        if (!market) return null;
+        
+        // Convert BN values to numbers
+        const amount = typeof bet.account.amount === 'object' && 'toNumber' in bet.account.amount
+          ? bet.account.amount.toNumber() / 1_000_000
+          : 0;
 
-      // Convert BN values to numbers
-      const amount = typeof bet.account.amount === 'object' && 'toNumber' in bet.account.amount
-        ? bet.account.amount.toNumber()/1000000
-        : 0;
+        // Get the odds for this team
+        const odds = market.account.odds[bet.account.teamIndex];
+        const oddsDecimal = typeof odds === 'object' && 'toNumber' in odds
+          ? odds.toNumber() / 100
+          : odds / 100;
 
-      const payoutAmount = bet.account.payoutAmount && 
-        typeof bet.account.payoutAmount === 'object' && 
-        'toNumber' in bet.account.payoutAmount
-        ? bet.account.payoutAmount.toNumber()/1000000
-        : 0;
+        // Calculate correct payout: stake * odds
+        const payoutAmount = amount * oddsDecimal;
 
-      const timestamp = typeof bet.account.timestamp === 'object' && 'toNumber' in bet.account.timestamp
-        ? bet.account.timestamp.toNumber()
-        : 0;
+        const timestamp = typeof bet.account.timestamp === 'object' && 'toNumber' in bet.account.timestamp
+          ? bet.account.timestamp.toNumber()
+          : 0;
 
-      return {
-        publicKey: bet.publicKey,
-        amount,
-        payoutAmount,
-        timestamp,
-        teamIndex: bet.account.teamIndex,
-        marketPublicKey: marketPubKey,
-        market: market ? {
-          publicKey: market.publicKey,
-          account: {
-            leagueName: market.account.leagueName,
-            season: market.account.season,
-            teams: market.account.teams,
-            isResolved: market.account.isResolved,
-            winningTeamIndex: market.account.winningTeamIndex,
-          }
-        } : null,
-      };
-    });
+        return {
+          publicKey: bet.publicKey,
+          amount,
+          payoutAmount,
+          timestamp,
+          teamIndex: bet.account.teamIndex,
+          marketPublicKey: marketPubKey,
+          market: {
+            publicKey: market.publicKey,
+            account: {
+              leagueName: market.account.leagueName,
+              season: market.account.season,
+              teams: market.account.teams,
+              isResolved: market.account.isResolved,
+              winningTeamIndex: market.account.winningTeamIndex,
+            }
+          },
+        };
+      })
+      .filter((bet): bet is NonNullable<typeof bet> => bet !== null);
   }, [bets, marketMap]);
 
   if (betsLoading || marketsLoading) {

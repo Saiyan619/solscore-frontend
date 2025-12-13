@@ -210,7 +210,7 @@ if (!market || !marketId) {
                             variant="outline" 
                             className={`text-lg px-3 py-1 ${isSelected ? 'border-primary bg-primary/20' : ''}`}
                           >
-                            {oddNum.toString()}x
+                           {(parseFloat(oddNum) / 100).toFixed(2)}x
                           </Badge>
                         </div>
                       </button>
@@ -278,12 +278,12 @@ if (!market || !marketId) {
                     </div>
                     <div className="flex justify-between text-sm">
                       <span className="text-muted-foreground">Odds</span>
-                      <span className="font-semibold">{selectedOdd.toFixed(1)}x</span>
+                      <span className="font-semibold">{(selectedOdd / 100).toFixed(2)}x</span>
                     </div>
                     <div className="border-t border-primary/30 pt-3 flex justify-between items-center">
                       <span className="font-semibold text-sm">Potential Win</span>
                       <span className="font-bold text-primary text-xl">
-                        {potentialWin} USDC
+                       {(parseFloat(potentialWin) / 100).toFixed(2)}
                       </span>
                     </div>
                   </div>

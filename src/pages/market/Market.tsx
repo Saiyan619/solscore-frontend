@@ -16,10 +16,18 @@ const Markets = () => {
   const { markets } = useGetAllMarkets();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedLeague, setSelectedLeague] = useState("all");
-
+  
    const activeMarkets = markets.filter((market) => {
+    console.log(market.account.odds.toString())
       return market.account.isResolved === false;
   });
+// markets.map((market) => {
+//   const decimalOdds = market.account.odds.map(odd => 
+//     (odd.toNumber() / 1).toFixed(2)
+//   );
+//   console.log(decimalOdds);
+//   return decimalOdds; // Add return statement
+// });
   const filteredMarkets = activeMarkets.filter((market) => {
     const matchesSearch = market.account.leagueName.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesLeague = selectedLeague === "all" || market.account.leagueName === selectedLeague;

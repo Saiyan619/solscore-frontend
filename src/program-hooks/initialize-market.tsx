@@ -57,7 +57,7 @@ export const useInitializeMarket = () => {
       const allowedBettorsBN = new BN(allowedBettors);
       
       // Convert odds array to BN array if needed
-      const oddsBN = odds.map(odd => new BN(odd));
+      const oddsBN = odds.map(odd => new BN(Math.round(odd * 100)));
 
       const tx = await program.methods
         .initializeMarket(
